@@ -1,0 +1,49 @@
+/* .heading{
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+} */
+.heart-style {
+    color: #1279a1;
+    font-size: 30px;
+}
+.service-img{ 
+    overflow: hidden;
+}
+.service-img img{ 
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+.service-img img:hover{ 
+    transform: scale(1.08);
+}
+.text-description{
+    text-align: justify;
+}
+.book-btn{
+    background: none;
+    border: 2px solid purple;
+    text-transform: uppercase;
+    border-radius: 30px;
+    padding: 7px 15px;
+    color: #000;
+    transition: 0.3s;
+}
+.book-btn:hover{
+    background: purple;
+    border: 2px solid purple;
+    color: #fff;
+}
+.servicecard{
+    transition: 0.3s;
+}
+.servicecard:hover{
+    box-shadow: 0 0 8px 5px #6e596e42;
+}
+.service-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

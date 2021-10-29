@@ -1,0 +1,18 @@
+.heading{
+    text-align: center;
+    font-weight: 700;
+}
+.heading h2{
+    position: relative;
+    display: inline-block;
+}
+.heading h2::before {
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 70%;
+    background-color: #722e62;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: -7px;
+}

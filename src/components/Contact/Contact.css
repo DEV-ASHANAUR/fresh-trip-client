@@ -1,0 +1,59 @@
+.contact-banner {
+    background: rgb(221 221 221 / 14%);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+.contact-bg{
+    background-color: purple;
+}
+.input-control{
+    border: transparent!important;
+    border: 1px solid purple!important;
+    height: 50px!important;
+    background: transparent!important;
+    color: black!important;
+    font-size: 18px;
+    border-radius: 2px;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    width: 100%; 
+}
+.textarea-control{
+    border: transparent!important;
+    border: 1px solid purple!important;
+    height: auto!important;
+    background: transparent!important;
+    color: black!important;
+    font-size: 18px;
+    border-radius: 2px;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    width: 100%; 
+}
+input,textarea:focus { 
+    outline: none !important;
+    border-color: #0f61b9;
+    box-shadow: 0 0 10px #719ECE;
+}
+.send-btn {
+    background: none;
+    border: 2px solid purple;
+    text-transform: uppercase;
+    border-radius: 30px;
+    padding: 7px 15px;
+    color: #000;
+    transition: 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+.send-btn:hover{
+    background: purple;
+    border: 2px solid purple;
+    color: #fff;
+}
