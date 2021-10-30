@@ -37,7 +37,7 @@ const Navbar = () => {
                                 <NavLink className="nav-link" aria-current="page" to="/booking">booking</NavLink>
                             </li>
                             <li className="nav-item px-3">
-                                <NavLink className="nav-link" aria-current="page" to="/contact">Contact</NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/myorder">My Order</NavLink>
                             </li>
                             
                             {

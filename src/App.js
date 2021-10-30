@@ -8,6 +8,7 @@ import NotFound from './components/NotFound/NotFound';
 import Booking from './components/Booking/Booking';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import MyOrder from './components/MyOrder/MyOrder';
 function App() {
   return (
     <div>
@@ -23,6 +24,9 @@ function App() {
               </Route>
               <PrivateRoute path='/booking'>
                 <Booking></Booking>
+              </PrivateRoute>
+              <PrivateRoute path='/myorder'>
+                <MyOrder></MyOrder>
               </PrivateRoute>
               <Route path='/login'>
                 <Login></Login>
