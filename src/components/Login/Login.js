@@ -1,17 +1,21 @@
 import React from 'react';
 import './Login.css';
 import gopng from '../../assets/google-removebg-preview.png';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 const Login = () => {
     const {googleLogIn,setIsLoading} = useAuth();
     //history 
     const history = useHistory();
+    //useLocation
+    const location = useLocation();
+    //condition 
+    const location_uri = location.state?.from || '/';
     //handle login 
     const handleGoogleSignIn = () => {
         googleLogIn()
         .then((result)=>{
-            history.push('/booking');
+            history.push(location_uri);
         }).catch(err=>{
             console.log(err);
         }).finally(()=>{

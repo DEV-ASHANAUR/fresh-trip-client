@@ -9,6 +9,7 @@ import Booking from './components/Booking/Booking';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import MyOrder from './components/MyOrder/MyOrder';
+import AddService from './components/AddService/AddService';
 function App() {
   return (
     <div>
@@ -22,11 +23,14 @@ function App() {
               <Route path='/home'>
                 <Home></Home>
               </Route>
-              <PrivateRoute path='/booking'>
+              <PrivateRoute path='/booking/:id'>
                 <Booking></Booking>
               </PrivateRoute>
               <PrivateRoute path='/myorder'>
                 <MyOrder></MyOrder>
+              </PrivateRoute>
+              <PrivateRoute path='/addservice'>
+                <AddService></AddService>
               </PrivateRoute>
               <Route path='/login'>
                 <Login></Login>

@@ -6,6 +6,7 @@
 }
 .details p{
     text-align: justify;
+    text-transform: capitalize;
 }
 .bookArea{
     /* margin: 20px 0; */
