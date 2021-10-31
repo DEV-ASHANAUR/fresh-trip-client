@@ -12,4 +12,4 @@ The Best Travel Agency..
 
 - 24 hours Monitoring Seytem for Tourist.
 
-- We Have Very Strong Comunication For Many Countries. 
+- We Have Very Strong Comunication system to Many Countries. 
