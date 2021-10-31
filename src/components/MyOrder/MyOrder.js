@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 const MyOrder = () => {
+    const [loader,setLoader] = useState(true);
     const {user} = useAuth();
     const [myOrder,setMyOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
         axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/${user.email}`)
         .then(res=>{
+            setLoader(false)
             setMyOrder(res.data);
         }).catch(err=>{
             console.log(err);
@@ -52,6 +54,15 @@ const MyOrder = () => {
     return (
         <>
             <Breadcrumb pageName='My Order' formPage='Home' toPage='My Order'></Breadcrumb>
+            {
+            loader?
+            <div className="col text-center">
+                <button className="btn btn-primary" type="button" disabled>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+            :
             <div className="container">
                 <div className="row my-5">
                     <div className="col-md-12 m-auto">
@@ -107,6 +118,7 @@ const MyOrder = () => {
                     </div>
                 </div>
             </div>
+            }
             <ToastContainer />
         </>
     );

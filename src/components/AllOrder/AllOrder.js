@@ -7,11 +7,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 const AllOrder = () => {
+    const [loader,setLoader] = useState(true);
     const [allOrder,setAllOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
         axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/`)
         .then(res=>{
+            setLoader(false);
             setAllOrder(res.data);
         }).catch(err=>{
             console.log(err);
@@ -76,13 +78,22 @@ const AllOrder = () => {
     return (
         <>
             <Breadcrumb pageName='Manage All Order' formPage='Home' toPage='Manage All Order'></Breadcrumb>
+            {
+            loader?
+            <div className="col text-center">
+                <button className="btn btn-primary" type="button" disabled>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+            :
             <div className="container">
                 <div className="row my-5">
                     <div className="col-md-12 m-auto">
                         <div className='myOrderArea'>
                             <h3 className='text-center'>All Order ({allOrder.length})</h3>
                             <div className="table-responsive">
-                                {
+                                {    
                                     allOrder.length > 0 ?
                                     <table className="table table-striped">
                                     <thead>
@@ -149,6 +160,7 @@ const AllOrder = () => {
                     </div>
                 </div>
             </div>
+            }
             <ToastContainer />
         </>
     );
