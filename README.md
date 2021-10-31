@@ -1,6 +1,6 @@
 # Fresh-trip [Live Link](https://fresh-trip-cbc63.web.app/)
 
-This project was [Health Care](https://fresh-trip-cbc63.web.app/). with React, firebase, bootstrap, nodejs, Expressjs, Mongodb.
+This project was [Fresh-trip](https://fresh-trip-cbc63.web.app/). with React, firebase, bootstrap, nodejs, Expressjs, Mongodb.
 
 The Best Travel Agency..
 
