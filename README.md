@@ -8,7 +8,7 @@ The Best Travel Agency..
 
 - Tourist Can Book Any Destination Any Time For Low Coat,
 
-- We provide Safe Jurney for you,,
+- We provide Safe Journey for you,,
 
 - 24 hours Monitoring Seytem for Tourist.
 
