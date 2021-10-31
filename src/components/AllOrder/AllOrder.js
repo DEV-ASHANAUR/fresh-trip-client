@@ -7,7 +7,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 const AllOrder = () => {
-    const [buffer,setBuffer] = useState(false);
     const [allOrder,setAllOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
@@ -50,7 +49,6 @@ const AllOrder = () => {
     }
     //update order
     const updateStatus = (id) => {
-        setBuffer(true);
         // console.log(id);
         const selectedItem = allOrder.find(item => item._id === id);
         if(selectedItem.status === 'pending'){
@@ -58,11 +56,9 @@ const AllOrder = () => {
             axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
             .then(res=>{
                 if(res.data.modifiedCount > 0){
-                    setBuffer(false);
                     toast('order is confirmed');
                 }
             }).catch(err=>{
-                setBuffer(false);
                 console.log(err)
             });
         }else{
@@ -70,11 +66,9 @@ const AllOrder = () => {
             axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
             .then(res=>{
                 if(res.data.modifiedCount > 0){
-                    setBuffer(false)
                     toast.success('order is revert to pending');
                 }
             }).catch(err=>{
-                setBuffer(false)
                 console.log(err);
             });
         }
@@ -123,12 +117,12 @@ const AllOrder = () => {
                                                             item.status === 'pending' ?
                                                             <button
                                                                 onClick={()=>updateStatus(item._id)}
-                                                                className='btn btn-success' title='confirm-order'>{buffer?'processing':'Confirm'}
+                                                                className='btn btn-success' title='confirm-order'>Confirm
                                                             </button>
                                                             :
                                                             <button
                                                                 onClick={()=>updateStatus(item._id)}
-                                                                className='btn btn-danger' title='confirm-order'>{buffer?'processing':'Revert'}
+                                                                className='btn btn-danger' title='confirm-order'>Revert
                                                             </button>
                                                         }
                                                         

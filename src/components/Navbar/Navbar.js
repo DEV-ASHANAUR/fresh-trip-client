@@ -36,22 +36,24 @@ const Navbar = () => {
                             {/* <li className="nav-item px-3">
                                 <NavLink className="nav-link" aria-current="page" to="/booking">booking</NavLink>
                             </li> */}
-                            <li className="nav-item px-3">
-                                <NavLink className="nav-link" aria-current="page" to="/myorder">My Order</NavLink>
-                            </li>
-                            <li className="nav-item px-3">
-                                <NavLink className="nav-link" aria-current="page" to="/manageallorder">Manage All Orders</NavLink>
-                            </li>
-                            <li className="nav-item px-3">
-                                <NavLink className="nav-link" aria-current="page" to="/addservice">Add Service</NavLink>
-                            </li>
-                            
                             {
                                 user.displayName &&
+                                <>
+                                <li className="nav-item px-3">
+                                    <NavLink className="nav-link" aria-current="page" to="/myorder">My Order</NavLink>
+                                </li>
+                                <li className="nav-item px-3">
+                                    <NavLink className="nav-link" aria-current="page" to="/manageallorder">Manage All Orders</NavLink>
+                                </li>
+                                <li className="nav-item px-3">
+                                    <NavLink className="nav-link" aria-current="page" to="/addservice">Add Service</NavLink>
+                                </li>
+                            
                                 <li className="nav-item userArea">
                                     <img src={user.photoURL} className="userImg" alt=".." />
                                     <NavLink className="nav-link user mx-3" aria-current="page" to="#">{user.displayName}</NavLink>
                                 </li>
+                                </>
                             }
                             {
                                 user.email ? 

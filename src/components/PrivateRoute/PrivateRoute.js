@@ -6,7 +6,7 @@ const PrivateRoute = ({children, ...rest}) => {
     const {user,isLoading} = useAuth();
     //waiting for user status
     if(isLoading){
-        return (<div className="text-center">
+        return (<div className="text-center d-flex justify-content-center align-items-center" style={{minHeight:'40vh'}}>
                     <button className="btn btn-primary" type="button" disabled>
                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Loading...
