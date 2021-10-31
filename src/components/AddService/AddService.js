@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 const AddService = () => {
+    const [buffer,setBuffer] = useState(false);
     const [data,setData] = useState({
         name:'',
         image:'',
@@ -24,9 +25,10 @@ const AddService = () => {
     }
     //handle add service
     const handleAddService = async(e) => {
+        setBuffer(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/service`,{
+            const res = await axios.post(`https://gory-coffin-65717.herokuapp.com/service`,{
                 destination : data.name,
                 image : data.image,
                 duration : data.duration,
@@ -35,6 +37,7 @@ const AddService = () => {
             });
             // console.log(res);
             if(res.data.insertedId){
+                setBuffer(false);
                 setData({
                     name:'',
                     image:'',
@@ -45,6 +48,7 @@ const AddService = () => {
                 toast.success('Service Added Succesfully');
             }
         } catch (error) {
+            setBuffer(false);
             console.log(error)
         }
     }
@@ -82,7 +86,7 @@ const AddService = () => {
                                         <textarea name="details" value={data.details} onChange={InputEvent} className="textarea-control" cols="30" rows="5" placeholder="Enter description" required></textarea>
                                     </div>
                                 </div>
-                                <button className="send-btn" type="submit"> Add Service </button>
+                                <button className="send-btn" type="submit">{ buffer?'Adding..':'Add Service'}  </button>
                             </form>
                         </div>
                     </div>

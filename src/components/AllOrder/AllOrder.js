@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import './MyOrder.css';
+// import './MyOrder.css';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import { ToastContainer, toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import useAuth from '../../hooks/useAuth';
-const MyOrder = () => {
-    const {user} = useAuth();
-    const [myOrder,setMyOrder] = useState([]);
+const AllOrder = () => {
+    const [buffer,setBuffer] = useState(false);
+    const [allOrder,setAllOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
-        axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/${user.email}`)
+        axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/`)
         .then(res=>{
-            setMyOrder(res.data);
+            setAllOrder(res.data);
         }).catch(err=>{
             console.log(err);
         })
-    },[]);
+    },[allOrder]);
     //handle delete item
     const deleteItem = (id) => {
         confirmAlert({
@@ -30,8 +29,8 @@ const MyOrder = () => {
                     axios.delete(`https://gory-coffin-65717.herokuapp.com/order/${id}`)
                     .then(res=>{
                         if(res.status === 200){
-                            const remainOrder = myOrder.filter(item => item._id !== id);
-                            setMyOrder(remainOrder);
+                            const remainOrder = allOrder.filter(item => item._id !== id);
+                            setAllOrder(remainOrder);
                             toast.success("Order Deleted Successfully");
                         }
                     }).catch(err=>{
@@ -49,17 +48,48 @@ const MyOrder = () => {
             overlayClassName: "overley"
         });
     }
+    //update order
+    const updateStatus = (id) => {
+        setBuffer(true);
+        // console.log(id);
+        const selectedItem = allOrder.find(item => item._id === id);
+        if(selectedItem.status === 'pending'){
+            selectedItem.status = 'confirm';
+            axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
+            .then(res=>{
+                if(res.data.modifiedCount > 0){
+                    setBuffer(false);
+                    toast('order is confirmed');
+                }
+            }).catch(err=>{
+                setBuffer(false);
+                console.log(err)
+            });
+        }else{
+            selectedItem.status = 'pending';
+            axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
+            .then(res=>{
+                if(res.data.modifiedCount > 0){
+                    setBuffer(false)
+                    toast.success('order is revert to pending');
+                }
+            }).catch(err=>{
+                setBuffer(false)
+                console.log(err);
+            });
+        }
+    }
     return (
         <>
-            <Breadcrumb pageName='My Order' formPage='Home' toPage='My Order'></Breadcrumb>
+            <Breadcrumb pageName='Manage All Order' formPage='Home' toPage='Manage All Order'></Breadcrumb>
             <div className="container">
                 <div className="row my-5">
                     <div className="col-md-12 m-auto">
                         <div className='myOrderArea'>
-                            <h3 className='text-center'>My All Order ({myOrder.length})</h3>
+                            <h3 className='text-center'>All Order ({allOrder.length})</h3>
                             <div className="table-responsive">
                                 {
-                                    myOrder.length > 0 ?
+                                    allOrder.length > 0 ?
                                     <table className="table table-striped">
                                     <thead>
                                         <tr>
@@ -68,12 +98,13 @@ const MyOrder = () => {
                                             <th>Desitination</th>
                                             <th>Package</th>
                                             <th>Order_status</th>
-                                            <th className='text-center'>Action</th>
+                                            <th className='text-center'>Update Order</th>
+                                            <th className='text-center'>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            myOrder.map(item=>
+                                            allOrder.map(item=>
                                                 <tr key={item._id}>
                                                     <td>{item._id}</td>
                                                     <td>{item.name}</td>
@@ -88,9 +119,26 @@ const MyOrder = () => {
                                                         }
                                                     </td>
                                                     <td className='text-center'>
+                                                        {
+                                                            item.status === 'pending' ?
+                                                            <button
+                                                                onClick={()=>updateStatus(item._id)}
+                                                                className='btn btn-success' title='confirm-order'>{buffer?'processing':'Confirm'}
+                                                            </button>
+                                                            :
+                                                            <button
+                                                                onClick={()=>updateStatus(item._id)}
+                                                                className='btn btn-danger' title='confirm-order'>{buffer?'processing':'Revert'}
+                                                            </button>
+                                                        }
+                                                        
+                                                    </td>
+                                                    <td className='text-center'>
                                                         <button
-                                                        onClick={()=>deleteItem(item._id)}
-                                                        className='btn-logout' title='delete'><i className="fas fa-trash-alt"></i></button>
+                                                            onClick={()=>deleteItem(item._id)}
+                                                            className='btn-logout' title='delete'><i className="fas fa-trash-alt"></i>
+                                                        </button>
+
                                                     </td>
                                                 </tr>
                                             )
@@ -99,7 +147,7 @@ const MyOrder = () => {
                                     </tbody>
                                 </table>
                                 :
-                                <h4 className="text-center py-5">Your Order Summery is Empty</h4>
+                                <h4 className="text-center py-5">Order Summery is Empty</h4>
                                 }
                                 
                             </div>
@@ -112,4 +160,4 @@ const MyOrder = () => {
     );
 };
 
-export default MyOrder;
+export default AllOrder;

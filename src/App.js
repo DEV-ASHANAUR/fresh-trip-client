@@ -10,6 +10,7 @@ import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import MyOrder from './components/MyOrder/MyOrder';
 import AddService from './components/AddService/AddService';
+import AllOrder from './components/AllOrder/AllOrder';
 function App() {
   return (
     <div>
@@ -28,6 +29,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path='/myorder'>
                 <MyOrder></MyOrder>
+              </PrivateRoute>
+              <PrivateRoute path='/manageallorder'>
+                <AllOrder></AllOrder>
               </PrivateRoute>
               <PrivateRoute path='/addservice'>
                 <AddService></AddService>

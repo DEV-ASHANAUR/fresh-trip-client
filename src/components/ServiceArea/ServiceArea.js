@@ -8,7 +8,7 @@ const ServiceArea = () => {
     const [service,setService] = useState([]);
     //fetch data
     useEffect(()=>{
-        fetch('http://localhost:5000/service')
+        fetch('https://gory-coffin-65717.herokuapp.com/service')
         .then(res => res.json())
         .then(data => {
             setService(data);

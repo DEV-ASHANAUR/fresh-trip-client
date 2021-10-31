@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Booking = () => {
+    const [buffer,setBuffer] = useState(false);
     const history = useHistory();
     const [service,setService] = useState({});
     const {id} = useParams();
@@ -29,9 +30,10 @@ const Booking = () => {
     }
     //handle order
     const handleOrder = async(e) => {
+        setBuffer(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/order`,{
+            const res = await axios.post(`https://gory-coffin-65717.herokuapp.com/order`,{
                 ...data,
                 service_id:service._id,
                 destination:service.destination,
@@ -40,6 +42,7 @@ const Booking = () => {
                 status:'pending'
             });
             if(res.data.insertedId){
+                setBuffer(false);
                 setData({
                     name:user.displayName,
                     email:user.email,
@@ -52,13 +55,14 @@ const Booking = () => {
                 }, 2000);
             }
         } catch (error) {
+            setBuffer(false);
             console.log(error);
         }
     }
     // console.log(service);
     //fetch single data 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/service/${id}`)
+        axios.get(`https://gory-coffin-65717.herokuapp.com/service/${id}`)
         .then(res=>{
             setService(res.data);
         }).catch(err=>{
@@ -103,7 +107,7 @@ const Booking = () => {
                                         <textarea name="address" value={data.address} onChange={InputEvent} className="textarea-control" cols="30" rows="5" placeholder="Enter Address" required></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" className="send-btn"> Place Order </button>
+                                <button type="submit" className="send-btn">{ buffer?'processing..':'Place Order'} </button>
                             </form>
                         </div>
                     </div>
