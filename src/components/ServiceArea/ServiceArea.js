@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ServiceArea.css';
 import SectionHeading from '../SectionHeading/SectionHeading';
-import image from '../../assets/service/adventure.jpg';
 import Service from '../Service/Service';
 const ServiceArea = () => {
     const [loading,setLoading] = useState(true);
