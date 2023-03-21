@@ -6,8 +6,9 @@ const ServiceArea = () => {
     const [loading,setLoading] = useState(true);
     const [service,setService] = useState([]);
     //fetch data
+    //https://fresh-trip.onrender.com/
     useEffect(()=>{
-        fetch('https://gory-coffin-65717.herokuapp.com/service')
+        fetch('https://fresh-trip.onrender.com/service')
         .then(res => res.json())
         .then(data => {
             setService(data);
@@ -15,7 +16,7 @@ const ServiceArea = () => {
         });
     },[]);
     return (
-        <div className="container">
+        <div className="container pt-3" id='package'>
             <SectionHeading>Choses Your Package</SectionHeading>
             <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-5">
                 {

@@ -28,7 +28,7 @@ const AddService = () => {
         setBuffer(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`https://gory-coffin-65717.herokuapp.com/service`,{
+            const res = await axios.post(`https://fresh-trip.onrender.com/service`,{
                 destination : data.name,
                 image : data.image,
                 duration : data.duration,

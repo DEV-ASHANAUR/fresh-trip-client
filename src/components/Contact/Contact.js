@@ -29,7 +29,7 @@ const Contact = () => {
         setBuffer(true);
         e.preventDefault();
         try {
-            const response = await axios.post('https://gory-coffin-65717.herokuapp.com/message',data);
+            const response = await axios.post('https://fresh-trip.onrender.com/message',data);
             if(response.status === 200){
                 setBuffer(false);
                 setData({

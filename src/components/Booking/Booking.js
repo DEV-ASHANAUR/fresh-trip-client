@@ -28,12 +28,13 @@ const Booking = () => {
             }
         });
     }
+    //https://fresh-trip.onrender.com/service
     //handle order
     const handleOrder = async(e) => {
         setBuffer(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`https://gory-coffin-65717.herokuapp.com/order`,{
+            const res = await axios.post(`https://fresh-trip.onrender.com/order`,{
                 ...data,
                 service_id:service._id,
                 destination:service.destination,
@@ -62,7 +63,7 @@ const Booking = () => {
     // console.log(service);
     //fetch single data 
     useEffect(()=>{
-        axios.get(`https://gory-coffin-65717.herokuapp.com/service/${id}`)
+        axios.get(`https://fresh-trip.onrender.com/service/${id}`)
         .then(res=>{
             setService(res.data);
         }).catch(err=>{

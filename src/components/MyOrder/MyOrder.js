@@ -13,7 +13,7 @@ const MyOrder = () => {
     const [myOrder,setMyOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
-        axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/${user.email}`)
+        axios.get(`https://fresh-trip.onrender.com/myorder/${user.email}`)
         .then(res=>{
             setLoader(false)
             setMyOrder(res.data);
@@ -29,7 +29,7 @@ const MyOrder = () => {
               {
                 label: 'Yes',
                 onClick: () => {
-                    axios.delete(`https://gory-coffin-65717.herokuapp.com/order/${id}`)
+                    axios.delete(`https://fresh-trip.onrender.com/order/${id}`)
                     .then(res=>{
                         if(res.status === 200){
                             const remainOrder = myOrder.filter(item => item._id !== id);

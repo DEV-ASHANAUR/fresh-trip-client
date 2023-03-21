@@ -11,7 +11,7 @@ const AllOrder = () => {
     const [allOrder,setAllOrder] = useState([]);
     //fetch only login user order
     useEffect(()=>{
-        axios.get(`https://gory-coffin-65717.herokuapp.com/myorder/`)
+        axios.get(`https://fresh-trip.onrender.com/myorder/`)
         .then(res=>{
             setLoader(false);
             setAllOrder(res.data);
@@ -27,7 +27,7 @@ const AllOrder = () => {
               {
                 label: 'Yes',
                 onClick: () => {
-                    axios.delete(`https://gory-coffin-65717.herokuapp.com/order/${id}`)
+                    axios.delete(`https://fresh-trip.onrender.com/order/${id}`)
                     .then(res=>{
                         if(res.status === 200){
                             const remainOrder = allOrder.filter(item => item._id !== id);
@@ -55,7 +55,7 @@ const AllOrder = () => {
         const selectedItem = allOrder.find(item => item._id === id);
         if(selectedItem.status === 'pending'){
             selectedItem.status = 'confirm';
-            axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
+            axios.put(`https://fresh-trip.onrender.com/order/${id}`,selectedItem)
             .then(res=>{
                 if(res.data.modifiedCount > 0){
                     toast('order is confirmed');
@@ -65,7 +65,7 @@ const AllOrder = () => {
             });
         }else{
             selectedItem.status = 'pending';
-            axios.put(`https://gory-coffin-65717.herokuapp.com/order/${id}`,selectedItem)
+            axios.put(`https://fresh-trip.onrender.com/order/${id}`,selectedItem)
             .then(res=>{
                 if(res.data.modifiedCount > 0){
                     toast.success('order is revert to pending');
